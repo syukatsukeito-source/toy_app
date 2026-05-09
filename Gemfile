@@ -57,6 +57,10 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Auto-run tests on file changes
+  gem "guard"
+  gem "guard-minitest"
 end
 
 group :test do
