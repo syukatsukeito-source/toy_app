@@ -62,6 +62,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "rails-controller-testing"
-  gem "minitest", "~> 5.25"
+  gem "minitest", "~> 6.0"
   gem "minitest-reporters"
 end
