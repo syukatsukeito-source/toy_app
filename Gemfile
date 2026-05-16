@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.8"
+gem "rails", "~> 8.1.3"
 # Use the Sprockets asset pipeline
 gem "sprockets-rails"
 # Use SCSS for stylesheets
