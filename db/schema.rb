@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_05_21_092027) do
+ActiveRecord::Schema[7.0].define(version: 2026_05_28_070445) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_21_092027) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
