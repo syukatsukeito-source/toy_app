@@ -5,8 +5,8 @@ require "minitest/reporters"
 Minitest::Reporters.use!
 
 class ActiveSupport::TestCase
-  # Run tests in parallel with specified workers
-  parallelize(workers: :number_of_processors)
+  # Run tests in parallel with specified workers (Windows doesn't support fork)
+  parallelize(workers: 1) if RbConfig::CONFIG['host_os'] !~ /windows|mswin/i
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
