@@ -44,6 +44,19 @@ class AccountActivationTest < UsersSignup
     @user = assigns(:user)
   end
 
+  private
+
+  def activation_token_for(user)
+    token = user.activation_token
+    return token if token.present? && user.authenticated?(:activation, token)
+
+    token = User.new_token
+    user.update_column(:activation_digest, User.digest(token))
+    token
+  end
+
+  public
+
   test "should not be activated" do
     assert_not @user.activated?
   end
@@ -59,12 +72,12 @@ class AccountActivationTest < UsersSignup
   end
 
   test "should not be able to log in with invalid email" do
-    get edit_account_activation_path(@user.activation_token, email: 'wrong')
+    get edit_account_activation_path(activation_token_for(@user), email: 'wrong')
     assert_not is_logged_in?
   end
 
   test "should log in successfully with valid activation token and email" do
-    get edit_account_activation_path(@user.activation_token, email: @user.email)
+    get edit_account_activation_path(activation_token_for(@user), email: @user.email)
     assert @user.reload.activated?
     follow_redirect!
     assert_template 'users/show'
