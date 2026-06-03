@@ -20,7 +20,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
-  
+gem "active_storage_validations", "0.9.8"
 gem "bcrypt", "3.1.7"
 gem "faker", "2.21.0"
 gem "will_paginate", "3.3.1"

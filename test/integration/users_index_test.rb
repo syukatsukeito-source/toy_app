@@ -4,7 +4,12 @@
 
     def setup
       @admin     = users(:michael)
-      @non_admin = users(:archer)
+      @non_admin = User.create!(name: "Non Admin User",
+                                email: "nonadmin-#{SecureRandom.hex(4)}@example.com",
+                                password: "password",
+                                password_confirmation: "password",
+                                activated: true,
+                                activated_at: Time.zone.now)
     end
   end
 
@@ -30,9 +35,9 @@
     test "should have delete links" do
       first_page_of_users = User.where(activated: true).paginate(page: 1)
       first_page_of_users.each do |user|
-        assert_select 'a[href=?]', user_path(user), text: user.name
+        assert_select 'ul.users li a[href=?]', user_path(user), text: user.name
         unless user == @admin
-          assert_select 'a[href=?]', user_path(user), text: 'delete'
+          assert_select 'ul.users li a[href=?]', user_path(user), text: 'delete', count: 1
         end
       end
     end

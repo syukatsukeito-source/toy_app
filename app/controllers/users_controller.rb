@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
  def show
   @user = User.find(params[:id])
+  @microposts = @user.microposts.paginate(page: params[:page])
   # ↓↓↓ 以下の1行を追加します ↓↓↓
   redirect_to root_url, status: :see_other unless @user.activated?
 end
